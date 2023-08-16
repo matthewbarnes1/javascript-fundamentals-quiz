@@ -1,27 +1,36 @@
-// Pseudo code for javascript
+//This assigns variable to get the button element from html 
+var startQuiz = document.getElementById('start-button');
 
-// Timer
-// Event listener for start button
-// Starts countdown (from N seconds) when start button is clicked
-// When timer reaches 0, display "times out!"
-// When last question is answered, save finished time as variable for leaderboard
+// This listens for click even, will use to "start the quiz"
+startQuiz.addEventListener('click', function(){
+document.getElementById("start-button").style.display = "none";
+// This is where I should "unhide (display) the question div, and buttons"
+})
+ 
 
-// Loading page
-// Question pages/slides
+// // const question = document.createElement("p");
+// // question.innerText = "This is a paragraph";
+// // document.body.appendChild(question);
 
-// Question page
-// Static text-block front and center
-// Timer in top right on all pages
-// As a multiple choice quiz, have 4 "buttons" to select ABC or D
+// document.body.onload = addElement;
 
-// When question is answered (when button is clicked),
-// Answer-box displays, showing if the answer was correct/fals
-// Go to next questioins / next slide
+// function addElement () {
+//   // create a new div element
+//   const newDiv = document.createElement("div");
 
-// After last question
-// Prompt user (text-box) for initials
-// Show leaderboard 
+//   // and give it some content
+//   const newContent = document.createTextNode("Hi there and greetings!");
 
+//   // add the text node to the newly created div
+//   newDiv.appendChild(newContent);
 
-// Local storage items
-// Initials and final score
+//   // add the newly created element and its content into the DOM
+//   const currentDiv = document.getElementById("div1");
+//   document.body.insertBefore(newDiv, currentDiv);
+// }
+
+var checkboxA = document.getElementById("A");
+var checkboxB = document.getElementById("B");
+var checkboxC = document.getElementById("C");
+var checkboxD = document.getElementById("D");
+
