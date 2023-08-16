@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Quiz</title>
-    <link href="/assets/style/reset.css" rel="reset-sheet">
-    <link href="/assets/style/style.css" rel="style-sheet">
-
+    <link href="./style.css" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <h1>Java Fundamentals Quiz</h1>
+        <p id="timer">This is the timer</p>
     </header>
-    <div id ="landing-paeg">
-        <h3>Rules for the quiz</h3>
-        <p>asdhkjsdhfkasjhdfaslfdjashdflkajshdfklasjhdf</p>
+
+
+    <div id ="landing-page">
+        <h3>Quiz Rules & Guidelines</h3>
+        <p>This quiz is multiple choice. This quiz is timed</p>
         <p>When ready, please click Start quiz button below</p>
         <button id="start-button">Start quiz</button>
         
     </div>
     
     <div id="questionContainer">
-            <p>This is the question</p>
-            //
+            <p id="Question">This is the question</p>
+
             <input type="button" id="A" value="Answer A">
             <input type="button" id="B" value="Answer B">
             <input type="button" id="C" value="Answer C">
@@ -31,5 +33,6 @@
 
     </div>
     <script src="./script.js"></script>
+
 </body>
 </html>
