@@ -1,73 +1,82 @@
-//This assigns variable to get the button element from html 
+// This assigns variable to get the button element from html 
 var startQuiz = document.getElementById('start-button');
 var hideQuestions = document.getElementById("questionContainer").style.visibility = "hidden";
+
+// These variables get element for answer buttons 
+var answerButtonA = document.getElementById('A');
+var answerButtonB = document.getElementById('B');
+var answerButtonC = document.getElementById('C');
+var answerButtonD = document.getElementById('D');
 
 
 // This code block is used to select p element to use for timer
 const timeP = document.querySelector('p');
-// This sets a variable called timeSecond to 60 seconds
+// This sets a variable called timeSecond to 60 seconds []
 let timeSecond = 60;
-
-// This will edit the timeP element with our remainng time 
+// This will edit the timeP element with our remainng time left in countdown
 timeP.innerHTML = `Seconds remaining: ${timeSecond}`;
-
-
 // This listens for click even, will use to "start the quiz"
 startQuiz.addEventListener('click', function(){
-    // this hides the start button and shows questions upon click
+// This hides the start button and shows questions upon click
 document.getElementById("landing-page").style.visibility = "hidden";
 document.getElementById("questionContainer").style.visibility = "visible";
 
 const countDown = setInterval(()=>{
     timeSecond--;
     timeP.innerHTML = `00:${timeSecond}`;
-
 },1000)
-
-// Create if statemenet to set "out of time / you lsoe when timer runs out"
+if(timeSecond < 0){
+    alert("out of time");
+}
 })
 
 
+// We need to edit the placeholder value of each button, 
+// every new question (after button click for answer current question)
 
+// This array will hold the questions, options, and answers to verify correct/false
+
+let questionArr = {
+Question1: {
+    Question: "This is the question for q1",
+    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
+    CorrectOption: 'A'
+},
+Question2: {
+    Question: "This is the question for q2",
+    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
+    CorrectOption: 'A'
+},
+question3: {
+    Question: "This is the question for q3",
+    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
+    CorrectOption: 'A'
+},
+Question4: { 
+    Question: "This is the question for q4",
+    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
+    CorrectOption: 'A'
+},
+Question5: {
+    Question: "This is the question for q5",
+    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
+    CorrectOption: 'A'
+}};
+
+// This gives the answer buttons labels from array
+$('#A').attr('value',questionArr.Question1.Options[0]);
+$('#B').attr('value',questionArr.Question1.Options[1]);
+$('#C').attr('value',questionArr.Question1.Options[2]);
+$('#D').attr('value',questionArr.Question1.Options[3]);
+
+//
+
+document.getElementsByTagName('input').onclick = function(){
+    i=0;
+    for(let i =0; i < 5; i++){
+
+    var questionTag = document.getElementById('Question');
  
-var answerButton = document.getElementById('A');
-answerButton.addEventListener('change', function(){
-})
+}
+};
 
-
-
-// const questions = [
-//     ['What is the correct way to link java to html', '<script>']
-//     ['']
-// ];
-
-
-// // const question = document.createElement("p");
-// // question.innerText = "This is a paragraph";
-// // document.body.appendChild(question);
-
-// document.body.onload = addElement;
-
-// function addElement () {
-//   // create a new div element
-//   const newDiv = document.createElement("div");
-
-//   // and give it some content
-//   const newContent = document.createTextNode("Hi there and greetings!");
-
-//   // add the text node to the newly created div
-//   newDiv.appendChild(newContent);
-
-//   // add the newly created element and its content into the DOM
-//   const currentDiv = document.getElementById("div1");
-//   document.body.insertBefore(newDiv, currentDiv);
-// }
-
-
-
-// var checkboxA = document.getElementById("A");
-// var checkboxB = document.getElementById("B");
-// var checkboxC = document.getElementById("C");
-// var checkboxD = document.getElementById("D");
-
-document.getElementById("Question").innerHTML = "This is the question";
