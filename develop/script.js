@@ -14,7 +14,7 @@ const timeP = document.querySelector('p');
 // This sets a variable called timeSecond to 60 seconds []
 let timeSecond = 60;
 // This will edit the timeP element with our remainng time left in countdown
-timeP.innerHTML = `Seconds remaining: ${timeSecond}`;
+timeP.innerHTML = `Timer: ${timeSecond}`;
 // This listens for click even, will use to "start the quiz"
 startQuiz.addEventListener('click', function(){
 // This hides the start button and shows questions upon click
@@ -23,7 +23,7 @@ document.getElementById("questionContainer").style.visibility = "visible";
 
 const countDown = setInterval(()=>{
     timeSecond--;
-    timeP.innerHTML = `00:${timeSecond}`;
+    timeP.innerHTML = `Time remaining: ${timeSecond}s`;
 },1000)
 if(timeSecond < 0){
     alert("out of time");
