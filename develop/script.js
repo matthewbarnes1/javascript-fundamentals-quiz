@@ -1,82 +1,86 @@
-// This assigns variable to get the button element from html 
-var startQuiz = document.getElementById('start-button');
-var hideQuestions = document.getElementById("questionContainer").style.visibility = "hidden";
-
-// These variables get element for answer buttons 
-var answerButtonA = document.getElementById('A');
-var answerButtonB = document.getElementById('B');
-var answerButtonC = document.getElementById('C');
-var answerButtonD = document.getElementById('D');
-
-
-// This code block is used to select p element to use for timer
+// Assigns variable to get the button element from HTML
+const startQuiz = document.getElementById('start-button');
+const questionContainer = document.getElementById("questionContainer");
 const timeP = document.querySelector('p');
-// This sets a variable called timeSecond to 60 seconds []
-let timeSecond = 60;
-// This will edit the timeP element with our remainng time left in countdown
-timeP.innerHTML = `Timer: ${timeSecond}`;
-// This listens for click even, will use to "start the quiz"
-startQuiz.addEventListener('click', function(){
-// This hides the start button and shows questions upon click
-document.getElementById("landing-page").style.visibility = "hidden";
-document.getElementById("questionContainer").style.visibility = "visible";
+const questionTag = document.getElementById('Question');
 
-const countDown = setInterval(()=>{
+// Hide the questions at the start
+questionContainer.style.visibility = "hidden";
+
+// Variables for answer buttons
+const answerButtonA = document.getElementById('A');
+const answerButtonB = document.getElementById('B');
+const answerButtonC = document.getElementById('C');
+const answerButtonD = document.getElementById('D');
+
+let timeSecond = 60;
+timeP.innerHTML = `Timer: ${timeSecond}s`;
+
+// Questions for the quiz
+const questions = [
+  {
+    text: "Which of these is not a JavaScript data type?",
+    options: ['Number', 'String', 'Boolean', 'Character'],
+    correctOption: 'D'
+  },
+  {
+    text: "How do you declare a JavaScript variable?",
+    options: ['variable name;', 'var name;', 'variable = name;', 'var name =;'],
+    correctOption: 'B'
+  },
+  {
+    text: "Which of these is a correct way to comment out multiple lines in JavaScript?",
+    options: ['//This comment ...', '/*This comment ...*/', '--This comment ...--', '~~This comment ...~~'],
+    correctOption: 'B'
+  },
+  // ... more questions
+];
+
+let currentQuestionIndex = 0;
+
+startQuiz.addEventListener('click', function() {
+  document.getElementById("landing-page").style.visibility = "hidden";
+  questionContainer.style.visibility = "visible";
+  displayQuestion(currentQuestionIndex);
+
+  const countDown = setInterval(() => {
     timeSecond--;
     timeP.innerHTML = `Time remaining: ${timeSecond}s`;
-},1000)
-if(timeSecond < 0){
-    alert("out of time");
+
+    if (timeSecond <= 0) {
+      alert("Out of time!");
+      clearInterval(countDown);
+    }
+  }, 1000);
+});
+
+function displayQuestion(index) {
+  const question = questions[index];
+  questionTag.textContent = question.text;
+  answerButtonA.value = question.options[0];
+  answerButtonB.value = question.options[1];
+  answerButtonC.value = question.options[2];
+  answerButtonD.value = question.options[3];
 }
-})
 
+// Handle answer selection
+[answerButtonA, answerButtonB, answerButtonC, answerButtonD].forEach((button, index) => {
+  button.addEventListener('click', function() {
+    if (button.id === questions[currentQuestionIndex].correctOption) {
+      alert('Correct!');
+    } else {
+      alert('Wrong!');
+    }
 
-// We need to edit the placeholder value of each button, 
-// every new question (after button click for answer current question)
+    currentQuestionIndex++;
 
-// This array will hold the questions, options, and answers to verify correct/false
-
-let questionArr = {
-Question1: {
-    Question: "This is the question for q1",
-    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
-    CorrectOption: 'A'
-},
-Question2: {
-    Question: "This is the question for q2",
-    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
-    CorrectOption: 'A'
-},
-question3: {
-    Question: "This is the question for q3",
-    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
-    CorrectOption: 'A'
-},
-Question4: { 
-    Question: "This is the question for q4",
-    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
-    CorrectOption: 'A'
-},
-Question5: {
-    Question: "This is the question for q5",
-    Options: ['Answer A', 'Answer B', 'Answer C', 'Answer D'],
-    CorrectOption: 'A'
-}};
-
-// This gives the answer buttons labels from array
-$('#A').attr('value',questionArr.Question1.Options[0]);
-$('#B').attr('value',questionArr.Question1.Options[1]);
-$('#C').attr('value',questionArr.Question1.Options[2]);
-$('#D').attr('value',questionArr.Question1.Options[3]);
-
-//
-
-document.getElementsByTagName('input').onclick = function(){
-    i=0;
-    for(let i =0; i < 5; i++){
-
-    var questionTag = document.getElementById('Question');
- 
-}
-};
-
+    if (currentQuestionIndex < questions.length) {
+      displayQuestion(currentQuestionIndex);
+    } else {
+      alert('Quiz finished!');
+      // Reset for the sake of this example, in real-life you might redirect or show a score
+      currentQuestionIndex = 0;
+      displayQuestion(currentQuestionIndex);
+    }
+  });
+});
